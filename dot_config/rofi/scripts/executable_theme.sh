@@ -80,7 +80,7 @@ set_wallpaper_and_colors() {
 
 	# Generate color palette first
 	# -n: skip wallpaper
-	wal -i "$img_path" -n -q --saturate 0.2
+	wal -i "$img_path" -n -q --saturate 0.2 --backend haishoku
 
 	# Read color0 from pywal's JSON for the fill color
 	local fill_color
