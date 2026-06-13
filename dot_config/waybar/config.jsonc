@@ -1,0 +1,240 @@
+{
+	"layer": "top",
+	"position": "bottom",
+	"autohide": true,
+	"autohide-blocked": false,
+	"exclusive": true,
+	"passthrough": false,
+	"gtk-layer-shell": true,
+	/* === Modules Order === */
+	"modules-left": [
+		"custom/archicon",
+		"clock",
+		"cpu",
+		"temperature",
+		"battery#power",
+		"disk",
+		"memory"
+	],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
+	"modules-right": [
+		"tray",
+		// "wlr/taskbar",
+		"idle_inhibitor",
+		// "pulseaudio/slider",
+		"battery#main",
+		"wireplumber",
+		"backlight",
+		"bluetooth",
+		"network"
+		// "hyprland/language"
+	],
+	/* === Modules Left === */
+	"custom/archicon": {
+		"format": "",
+		"tooltip": false
+	},
+	"clock": {
+		"interval": 1,
+		"locale": "pt_PT.UTF-8",
+		"timezone": "Europe/Lisbon",
+		"format": "<span text_transform='capitalize'>{:L%a, %d %b %Y | %R}</span>",
+		"format-alt": "{:%T}", // Full date on click
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"tootltip": false
+	},
+	"cpu": {
+		"interval": 1,
+		"format": " {usage:>2}%",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+		"warning-threshold": 80,
+		"critical-threshold": 100,
+		"format": "{icon} {temperatureC}°C",
+		"format-critical": "󰈸 {temperatureC}°C",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"battery#power": {
+		"interval": 1,
+		"format": "󱐋{power:4.1f} W"
+	},
+	"memory": {
+		"interval": 1,
+		"format": " {percentage}% ({used:0.1f}Gb)",
+		"tooltip-format": "{avail:0.1f}Gb / {total:0.1f}Gb available",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"disk": {
+		"format": " {percentage_used}%",
+		"path": "/",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	/* === Modules Center === */
+	"hyprland/workspaces": {
+		"format": "{name}:{windows} ",
+		// "format-window-separator": "\n",
+		"window-rewrite-default": "󰘔",
+		"window-rewrite": {
+			"title<.*youtube.*>": "", // Windows with "youtube" in title
+			"class<kitty>": "",
+			"class<spotify>": "",
+			// Your core apps
+			"class<google-chrome>": "",
+			"class<kitty> title<.*nvim.*>": "", // Neovim usually runs in a terminal
+			"class<yazi>": "󰉋", // Neovim usually runs in a terminal
+			"class<.*whatsapp.*>": "󰖣", // Or "WhatsApp" depending on your wrapper
+			// System / File Management
+			"title<.*thunar.*>": "󰉋",
+			"class<btop>": "",
+			"class<vlc>": "󰕼",
+			"class<org.pwmt.zathura>": "󰈙"
+		},
+		"show-special": true,
+		"special-visible-only": true
+	},
+	/* === Modules Right === */
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"all-outputs": true,
+		"active-first": true,
+		"tooltip-format": "{name}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": [
+			"rofi"
+		]
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"wireplumber": {
+		"format": "{volume}% {icon}",
+		"format-muted": "{volume}% 󰝟",
+		"on-click": "pavucontrol",
+		"states": {
+			"zero": 0,
+			"low": 1
+		},
+		"format-zero": "{volume}% 󰝟",
+		"format-icons": [
+			"󰕿",
+			"󰖀",
+			"󰕾"
+		]
+	},
+	"battery#main": {
+		"interval": 1,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		// "full-at": 80,
+		"format": "{capacity}% {icon}",
+		"format-charging": "{capacity}% 󱐋",
+		"format-not-charging": "{capacity}% ",
+		"format-full": "{capacity}% ",
+		"format-critical": "{capacity}% 󰂃",
+		"format-warning": "{capacity}% 󰂃",
+		"format-icons": [
+			"󰂎",
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹"
+		],
+		"on-click": "sudo -E legion_gui"
+	},
+	"backlight": {
+		// "device": "intel_backlight",
+		"format": "{percent}% {icon}",
+		"format-icons": [
+			"󰃝",
+			"󰃟",
+			"󰃠",
+			"󰃞"
+		]
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-disabled": "󰂲", // an icon to show when bluetooth is off
+		"format-connected-battery": " {device_battery_percentage}%",
+		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "Connected\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "Connected\t{device_address}\t{device_battery_percentage}%",
+		"on-click": "blueman-manager"
+	},
+	"network": {
+		"format-wifi": "{icon} {essid}",
+		"format-ethernet": "󰈀",
+		"format-disconnected": "󰖪", // Icon for no connection
+		"format-icons": [
+			"󰤯",
+			"󰤟",
+			"󰤢",
+			"󰤥",
+			"󰤨"
+		],
+		"tooltip-format": "{ifname} via {gwaddr} 󰊄",
+		"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+		"tooltip-format-ethernet": "{ifname} 󰈀",
+		"tooltip-format-disconnected": "Disconnected",
+		"max-length": 15,
+		"on-click": "nmrs"
+	},
+	"custom/notification": {
+		"tooltip": true,
+		"format": "<span size='16pt'>{icon}</span>",
+		"format-icons": {
+			"notification": "󱅫",
+			"none": "󰂜",
+			"dnd-notification": "󰂠",
+			"dnd-none": "󰪓",
+			"inhibited-notification": "󰂛",
+			"inhibited-none": "󰪑",
+			"dnd-inhibited-notification": "󰂛",
+			"dnd-inhibited-none": "󰪑"
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	},
+	"hyprland/language": {
+		"format": "{} ",
+		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+		"format-es": "ESP",
+		"format-en": "ENG"
+	}
+}

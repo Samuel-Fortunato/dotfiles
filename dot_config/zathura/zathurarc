@@ -1,0 +1,3 @@
+include /home/samff/.cache/wal/colors-zathura
+
+set recolor-reverse-video true

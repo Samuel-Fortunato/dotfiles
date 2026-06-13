@@ -1,0 +1,292 @@
+/* Import pywal-generated colors */
+@import "/home/samff/.cache/wal/waybar-colors.css";
+
+/* ----- Global reset ----- */
+* {
+    border: none;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    min-height: 0;
+}
+
+/* ----- Bar ----- */
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+    /* border-top: 2px solid @primary; */
+}
+
+window#waybar.hidden {
+    opacity: 0.15;
+}
+
+/* ----- Base module ----- */
+#custom-archicon,
+#clock,
+#cpu,
+#temperature,
+#battery,
+#disk,
+#memory,
+#idle_inhibitor,
+#wireplumber,
+#backlight,
+#bluetooth,
+#network,
+#custom-notification,
+#tray {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 11px;
+    padding-right: 11px;
+    background: @bg;
+    color: @fg;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ----- Hover ----- */
+#custom-archicon:hover,
+#clock:hover,
+#cpu:hover,
+#temperature:hover,
+#battery.power:hover,
+#battery.main:hover,
+#disk:hover,
+#memory:hover,
+#idle_inhibitor:hover,
+#wireplumber:hover,
+#backlight:hover,
+#bluetooth:hover,
+#network:hover,
+#custom-notification:hover {
+    background: @primary;
+    color: @bg;
+}
+
+/* =====================================================
+   PILL 1: Arch icon + Clock
+   accent-colored border, arch icon filled with accent
+   ===================================================== */
+
+#custom-archicon {
+    background: @primary;
+    color: @bg;
+    border: 1px solid @primary;
+    border-right: none;
+    margin-left: 10px;
+	 padding-right: 14px;
+    border-radius: 12px 0 0 12px;
+}
+
+#clock {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @primary;
+    border-left: none;
+    margin-right: 8px;
+    border-radius: 0 12px 12px 0;
+}
+
+/* =====================================================
+   PILL 2: Resources (CPU, Temp, Battery#power, Memory)
+   neutral border
+   ===================================================== */
+
+#cpu {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @fg_dim;
+    border-right: none;
+    margin-left: 8px;
+    border-radius: 12px 0 0 12px;
+}
+
+#temperature {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#battery.power {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#disk {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#memory {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @fg_dim;
+    border-left: none;
+    margin-right: 8px;
+    border-radius: 0 12px 12px 0;
+}
+
+/* =====================================================
+   PILL 3: Utilities
+   neutral border, notification filled with accent
+   ===================================================== */
+
+#idle_inhibitor {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @fg_dim;
+    border-right: none;
+    margin-left: 8px;
+    border-radius: 12px 0 0 12px;
+}
+
+#battery.main {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#wireplumber {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#backlight {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#bluetooth {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @fg_dim;
+    border-bottom: 1px solid @fg_dim;
+}
+
+#network {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @fg_dim;
+    border-left: none;
+    margin-right: 10px;
+    border-radius: 0 12px 12px 0;
+}
+
+#custom-notification.dnd-inhibited-notification,
+#custom-notification.inhibited-notification,
+#custom-notification.dnd-notification,
+#custom-notification {
+    background: @primary;
+    color: @bg;
+    border: 1px solid @fg_dim;
+    border-left: none;
+    margin-right: 10px;
+    border-radius: 0 12px 12px 0;
+}
+
+#custom-notification.dnd-inhibited-none,
+#custom-notification.inhibited-none,
+#custom-notification.dnd-none,
+#custom-notification.none {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @fg_dim;
+    border-left: none;
+    margin-right: 10px;
+    border-radius: 0 12px 12px 0;
+}
+
+/* =====================================================
+   Workspaces
+   ===================================================== */
+
+#workspaces {
+    margin: 5px 4px;
+    padding: 0 4px;
+}
+
+#workspaces button {
+    color: @fg_dim;
+    background: @bg;
+    padding: 3px 8px;
+    border: 1px solid @fg_dim;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.occupied {
+    color: @fg;
+    /* background: @primary; */
+    border: 1px solid @fg_dim;
+    border-radius: 8px;
+}
+
+#workspaces button.active {
+    color: @bg;
+    background: @primary;
+    border: 1px solid @primary;
+    border-radius: 8px;
+}
+
+#workspaces button:hover {
+    color: @bg;
+    background: @primary;
+}
+
+/* =====================================================
+   Tray
+   ===================================================== */
+
+#tray {
+    background: transparent;
+    padding: 0 8px;
+    margin-right: 4px;
+}
+
+#tray > .passive {
+    color: @fg_dim;
+}
+
+#tray > .active {
+    color: @primary;
+}
+
+#tray > .needs-attention {
+    color: @error;
+}
+
+/* =====================================================
+   Warning & Critical states
+   ===================================================== */
+
+#cpu.warning,
+#memory.warning,
+#temperature.warning,
+#disk.warning,
+#battery.power.warning:not(.charging),
+#battery.main.warning:not(.charging) {
+    color: @accent3;
+    border-color: @accent3;
+}
+
+#cpu.critical,
+#memory.critical,
+#temperature.critical,
+#disk.critical,
+#battery.power.critical:not(.charging),
+#battery.main.critical:not(.charging) {
+    color: @error;
+    border-color: @error;
+    background: @bg;
+}
