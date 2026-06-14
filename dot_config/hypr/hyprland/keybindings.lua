@@ -21,7 +21,7 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(mainMod .. "+ BACKSLASH", hl.dsp.exec_cmd( "killall -SIGUSR1 waybar" ), {})
-hl.bind(mainMod .. "+ BACKSLASH", hl.dsp.exec_cmd( "killall -SIGUSR1 waybar" ), {release = true})
+-- hl.bind(mainMod .. "+ BACKSLASH", hl.dsp.exec_cmd( "killall -SIGUSR1 waybar" ), {release = true})
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
