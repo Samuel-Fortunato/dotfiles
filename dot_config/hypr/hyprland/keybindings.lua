@@ -20,6 +20,8 @@ hl.bind(mainMod .. " + D", hl.dsp.window.float())
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mainMod .. "+ BACKSLASH", hl.dsp.exec_cmd( "killall -SIGUSR1 waybar" ), {})
+hl.bind(mainMod .. "+ BACKSLASH", hl.dsp.exec_cmd( "killall -SIGUSR1 waybar" ), {release = true})
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
@@ -41,30 +43,30 @@ local function move_window(direction, dx, dy)
 
 		if win.floating then
 			hl.dispatch(hl.dsp.window.move({
-				x=dx,
-				y=dy,
-				relative=true
+				x = dx,
+				y = dy,
+				relative = true
 			}))
 		else
 			hl.dispatch(hl.dsp.window.move({
-				direction=direction
+				direction = direction
 			}))
 		end
 	end
 end
 
-hl.bind(mainMod .. " + SHIFT + h", move_window("left", -30, 0), {repeating = true})
-hl.bind(mainMod .. " + SHIFT + l", move_window("right", 30, 0), {repeating = true})
-hl.bind(mainMod .. " + SHIFT + k", move_window("up", 0, -30), {repeating = true})
-hl.bind(mainMod .. " + SHIFT + j", move_window("down", 0, 30), {repeating = true})
+hl.bind(mainMod .. " + SHIFT + h", move_window("left", -30, 0), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + l", move_window("right", 30, 0), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + k", move_window("up", 0, -30), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + j", move_window("down", 0, 30), { repeating = true })
 
 
 
 -- Resize windows
-hl.bind(mainMod .. " + CTRL + h", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), {repeating = true})
-hl.bind(mainMod .. " + CTRL + l", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), {repeating = true})
-hl.bind(mainMod .. " + CTRL + k", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), {repeating = true})
-hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), {repeating = true})
+hl.bind(mainMod .. " + CTRL + h", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + l", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + k", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -129,3 +131,4 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(prog.theme))
 hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd(prog.notifClose))
 hl.bind(mainMod .. " + SHIFT + PERIOD", hl.dsp.exec_cmd(prog.notifPop))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(prog.clipboardHystory))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("killall waybar && " .. prog.waybar))

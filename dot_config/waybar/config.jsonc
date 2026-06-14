@@ -1,9 +1,9 @@
 {
-	"layer": "top",
+	"layer": "overlay",
 	"position": "bottom",
-	"autohide": true,
-	"autohide-blocked": false,
-	"exclusive": true,
+	"mode": "hide",
+	"start_hidden": true,
+	"exclusive": false,
 	"passthrough": false,
 	"gtk-layer-shell": true,
 	/* === Modules Order === */
@@ -54,7 +54,7 @@
 		}
 	},
 	"temperature": {
-		"hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+		"thermal-zone": 10,
 		"warning-threshold": 80,
 		"critical-threshold": 100,
 		"format": "{icon} {temperatureC}°C",

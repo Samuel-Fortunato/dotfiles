@@ -115,5 +115,4 @@ hl.window_rule({
 
 	match = { class = "chrome-nngceckbapebfimnlniiiahkandclblb-Default" },
 	float = true,
-	size = { 400, 600 },
 })
