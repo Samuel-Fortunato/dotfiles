@@ -18,6 +18,7 @@ M.calculator       = "kcalc"
 M.print            = "hyprshot -m region -z -o ~/Pictures/Screenshots"
 M.notifClose       = "dunstctl close"
 M.notifPop         = "dunstctl history-pop"
+M.notifDnD         = "dunstctl set-paused toggle"
 M.clipboardHystory = "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
 return M
