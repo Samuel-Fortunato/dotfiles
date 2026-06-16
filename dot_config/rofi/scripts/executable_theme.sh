@@ -101,6 +101,10 @@ set_wallpaper_and_colors() {
 
 	# Reload waybar to pick up new colors
 	pkill -SIGUSR2 waybar
+	sleep 0.1
+	if [ -f /tmp/waybar_hidden ]; then
+		killall -SIGUSR1 waybar
+	fi
 
 	# apply hyprland theme
 	hyprctl reload
