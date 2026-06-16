@@ -150,6 +150,7 @@ local delimiters = {
 	ma("lra", fmta("\\left\\langle <> \\right\\rangle", { i(1) })),
 	ma("lrc", fmta("\\left\\lceil <> \\right\\rceil", { i(1) })),
 	ma("lrf", fmta("\\left\\lfloor <> \\right\\rfloor", { i(1) })),
+	ma("lrlr", fmta("\\left<> <> \\right<>", { i(1), i(3), i(2)})),
 }
 
 -- ─── Functions & decorators ───────────────────────────────────────────────────
