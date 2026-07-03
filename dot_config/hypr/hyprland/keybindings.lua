@@ -133,8 +133,16 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(prog.theme))
 hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd(prog.notifClose))
 hl.bind(mainMod .. " + SHIFT + PERIOD", hl.dsp.exec_cmd(prog.notifPop))
 hl.bind(mainMod .. " + CTRL + PERIOD", function()
-	hl.dispatch(hl.dsp.exec_cmd(prog.notifDnD))
-	hl.dispatch(hl.dsp.exec_cmd('notify-send "Notifications" "Do not disturb toggled"'))
+	hl.dispatch(hl.dsp.exec_cmd([[
+		if dunstctl is-paused | grep -q "false"; then
+			notify-send -t 2000 "Notifications" "Do not disturb enabled"
+			sleep 2
+			dunstctl set-paused true
+		else
+			dunstctl set-paused false
+			notify-send -t 2000 "Notifications" "Do not disturb disabled"
+			fi
+    ]]))
 end)
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(prog.clipboardHystory))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("killall waybar && " .. prog.waybar))
