@@ -10,11 +10,12 @@ hl.monitor({
 	mode     = "highres",
 	-- position = "auto",
 	scale    = monitorScaleFactor,
+	-- disabled = true,
 })
 
 hl.monitor({
 	output   = "HDMI-A-1",
 	mode     = "highres",
-	position = "auto-center-right",
+	position = "auto-center-up",
 	scale    = 1,
 })
