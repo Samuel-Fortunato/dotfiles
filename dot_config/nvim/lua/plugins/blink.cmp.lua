@@ -4,6 +4,8 @@ return {
 	dependencies = {
 		"L3MON4DE/LuaSnip",
 		"windwp/nvim-autopairs",
+		'saghen/blink.compat',
+		"lervag/vimtex",
 	},
 	event = "InsertEnter",
 	opts = {
@@ -19,10 +21,16 @@ return {
 		snippets = { preset = "luasnip" },
 
 		sources = {
-			default = { 'lsp', 'snippets', 'path', 'buffer' },
+			default = { 'lsp', 'vimtex', 'snippets', 'path', 'buffer' },
 			providers = {
 				snippets = {
 					min_keyword_length = 2,
+					score_offset = 5,
+				},
+				vimtex = {
+					name = "vimtex",
+					min_keyword_length = 2,
+					module = "blink.compat.source",
 					score_offset = 4,
 				},
 				lsp = {

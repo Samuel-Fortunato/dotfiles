@@ -27,6 +27,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldcolumn = "1"
 
 vim.g.vimtex_fold_enabled = 1
+vim.opt.conceallevel = 2
 
 -- Highlight when yanking
 vim.api.nvim_create_autocmd('TextYankPost', {

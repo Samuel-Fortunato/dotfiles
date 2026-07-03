@@ -3,5 +3,7 @@ return {
 	lazy = false,
 	opts = {
 		auto_install = true,
+		noauto_install = { "latex" },
+		nohighlight = { "latex" },
 	},
 }
