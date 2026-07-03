@@ -3,17 +3,18 @@
 # theme.sh - Unified theme manager with Spotify live wallpaper and manual selection
 # Usage:
 #   theme.sh            - Show interactive rofi menu (pick wallpaper or start Spotify mode)
-#   theme.sh --daemon   - Run Spotify background daemon (usually started by menu)
-#   theme.sh --kill     - Kill the Spotify daemon
+#   theme.sh --spotify  - Run Spotify background daemon (usually started by menu)
+#   theme.sh --kill     - Kill any daemon
 
 # Configuration
 WP_DIR="$HOME/Pictures/Wallpapers"
-TMP_DIR="/tmp/spotify_bg"
-PID_FILE="/tmp/spotify-bg.pid"
+TMP_DIR="/tmp/dynamic_bg"
+PID_FILE="/tmp/dynamic-bg.pid"
 FILL_COLOR="000000"
 TRANSITION_TYPE="wipe"
 TRANSITION_ANGLE=270
 TRANSITION_STEP=30
+SLIDESHOW_TIME=240
 
 # Different resize modes
 MANUAL_RESIZE="crop" # For manual wallpaper selection
@@ -80,7 +81,7 @@ set_wallpaper_and_colors() {
 
 	# Generate color palette first
 	# -n: skip wallpaper
-	wal -i "$img_path" -n -q --saturate 0.2 --backend haishoku
+	wal -i "$img_path" -n -q -e --saturate 0.2 --backend haishoku
 
 	# Read color0 from pywal's JSON for the fill color
 	local fill_color
@@ -132,7 +133,7 @@ set_wallpaper_and_colors() {
 }
 
 # Function for Spotify daemon mode
-daemon_mode() {
+spotify_mode() {
 	echo "Starting Spotify background daemon (PID: $$)"
 	echo $$ >"$PID_FILE"
 
@@ -155,22 +156,54 @@ daemon_mode() {
 	done
 }
 
-# Function to kill the daemon
+# Function to kill the daemons
 kill_daemon() {
 	if [[ -f "$PID_FILE" ]]; then
 		pid=$(cat "$PID_FILE")
 		if kill -0 "$pid" 2>/dev/null; then
 			kill "$pid"
 			rm -f "$PID_FILE"
-			echo "Spotify daemon (PID $pid) killed."
+			echo "Daemon (PID $pid) killed."
 		else
 			echo "Stale PID file found. Removing."
 			rm -f "$PID_FILE"
 		fi
 	else
 		# Fallback: try pkill
-		pkill -f "theme.sh --daemon" 2>/dev/null && echo "Killed Spotify daemon (pkill)."
+		pkill -f "theme.sh --spotify" 2>/dev/null && echo "Killed Spotify daemon (pkill)."
+		pkill -f "theme.sh --slideshow" 2>/dev/null && echo "Killed Slideshow daemon (pkill)."
 	fi
+}
+
+# Function for slidwshow daemon mode
+slideshow_mode() {
+	echo "Starting slideshow background daemon (PID: $$)"
+	echo $$ >"$PID_FILE"
+
+	BG_PATH="$TMP_DIR/current_art.jpg"
+
+	while true; do
+		for img in $(shuf -e "$WP_DIR"/*); do
+			set_wallpaper_and_colors "$img" "$MANUAL_RESIZE"
+			sleep "$SLIDESHOW_TIME"
+		done
+	done
+
+	# while true; do
+	# 	# Use playerctl to follow track changes
+	# 	playerctl -p spotify metadata --format '{{mpris:artUrl}}' --follow 2>/dev/null | while read -r url; do
+	# 		if [[ -n "$url" ]]; then
+	# 			# Download album art
+	# 			curl -s "$url" -o "$BG_PATH"
+	# 			# Optional: blur with ImageMagick (uncomment if magick is installed)
+	# 			# magick "$BG_PATH" -blur 0x50 "$BG_PATH"
+	#
+	# 			# Use SPOTIFY_RESIZE mode for Spotify album art
+	# 			set_wallpaper_and_colors "$BG_PATH" "$SPOTIFY_RESIZE"
+	# 		fi
+	# 	done
+	# 	sleep 5 # Fallback in case playerctl --follow fails
+	# done
 }
 
 # Interactive menu
@@ -178,7 +211,7 @@ interactive_mode() {
 	# Kill any running daemon first (so they don't conflict)
 	kill_daemon
 
-	CHOICE=$(echo -e " Pick Wallpaper\n Spotify Mode" | rofi -dmenu -i -p "Theme Mode:")
+	CHOICE=$(echo -e " Pick Wallpaper\n󱒆 Slideshow\n Spotify Mode" | rofi -dmenu -i -p "Theme Mode:")
 
 	case "$CHOICE" in
 	*"Pick Wallpaper"*)
@@ -211,10 +244,14 @@ interactive_mode() {
 		fi
 
 		;;
+	*"Slideshow"*)
+		nohup "$0" --slideshow >/dev/null 2>&1 &
+		notify-send "Theme" "Slideshow Theming Activated"
+		;;
 	*"Spotify Mode"*)
 		# Start daemon in background (detached)
-		nohup "$0" --daemon >/dev/null 2>&1 &
-		# notify-send "Theme" "Spotify Live Theming Activated"
+		nohup "$0" --spotify >/dev/null 2>&1 &
+		notify-send "Theme" "Spotify Live Theming Activated"
 		;;
 	*)
 		# Do nothing if cancelled
@@ -224,17 +261,20 @@ interactive_mode() {
 
 # Main argument parsing
 case "${1:-}" in
---daemon)
-	daemon_mode
+--spotify)
+	spotify_mode
+	;;
+--slideshow)
+	slideshow_mode
 	;;
 --kill)
 	kill_daemon
 	;;
 --help | -h)
-	echo "Usage: $0 [--daemon|--kill|--help]"
-	echo "  (no args)  Show interactive menu"
-	echo "  --daemon   Run Spotify background daemon"
-	echo "  --kill     Kill the running daemon"
+	echo "Usage: $0 [--spotify|--kill|--help]"
+	echo "  (no args)		Show interactive menu"
+	echo "  --spotify		Run Spotify background daemon"
+	echo "  --kill			Kill any running daemon"
 	exit 0
 	;;
 *)
