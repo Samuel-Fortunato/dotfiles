@@ -4,6 +4,12 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "o" })
+  end,
+})
 
 vim.opt.undofile = true
 
