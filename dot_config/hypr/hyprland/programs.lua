@@ -20,5 +20,6 @@ M.notifClose       = "dunstctl close"
 M.notifPop         = "dunstctl history-pop"
 M.notifDnD         = "dunstctl set-paused toggle"
 M.clipboardHystory = "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+M.stayFree         = "~/Applications/stayfree-linux-x86_64_03c0d3e8357cfb52a9e9ffc962661a0c.AppImage --no-sandbox"
 
 return M

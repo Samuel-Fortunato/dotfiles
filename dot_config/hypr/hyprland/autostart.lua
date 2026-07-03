@@ -10,6 +10,7 @@ local prog = require("hyprland.programs")
 --
 hl.on("hyprland.start", function()
 	hl.exec_cmd(prog.waybar)
+	hl.exec_cmd(prog.stayFree)
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("powernotd")
