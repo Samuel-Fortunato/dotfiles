@@ -1,6 +1,6 @@
 return {
 	'nvim-telescope/telescope.nvim',
-	cond = false,
+	enabled = false,
 	version = '*',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
