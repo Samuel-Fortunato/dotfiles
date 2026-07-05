@@ -99,7 +99,7 @@
 			"class<spotify>": "",
 			// Your core apps
 			"class<google-chrome>": "",
-			"class<kitty> title<.*nvim.*>": "", // Neovim usually runs in a terminal
+			"class<kitty> title<nvim>": "", // Neovim usually runs in a terminal
 			"class<yazi>": "󰉋", // Neovim usually runs in a terminal
 			"class<.*whatsapp.*>": "󰖣", // Or "WhatsApp" depending on your wrapper
 			// System / File Management
