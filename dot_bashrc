@@ -50,3 +50,8 @@ function y() {
 function openfoam() {
 	source /opt/OpenFOAM/OpenFOAM-v2512/etc/bashrc
 }
+
+# Load local environment variables not tracked by dotfiles
+if [ -f ~/.private-keys ]; then
+    source ~/.private-keys
+fi
