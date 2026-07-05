@@ -4,7 +4,7 @@ return {
 	cmd = "Mason",
 	opts = {
 		ensure_installed = {
-			"lua_ls@3.16.4",
+			"lua_ls",
 			"pyright",
 			"clangd",
 			"texlab"
