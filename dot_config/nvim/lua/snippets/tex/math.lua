@@ -29,7 +29,7 @@ local text_snips = {
 local sub_super = {
 	-- Single digit auto-subscript: a1 → a_{1}
 	ma("__", fmta("_{<>}", { i(1) })),
-	ma("^^", fmta("^{<>}", { i(1) })),
+	ma("tt", fmta("^{<>}", { i(1) })),
 
 	-- Two-char auto-subscript trigger: td → _{...}
 	-- Regex: word char followed by digit triggers sub
