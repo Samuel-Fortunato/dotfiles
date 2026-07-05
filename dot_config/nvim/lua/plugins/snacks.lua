@@ -51,12 +51,12 @@ return {
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
-		-- styles = {
-		-- 	notification = { border = "rounded" },
-		-- 	input = { border = "rounded" },
-		-- 	terminal = { border = "rounded" },
-		-- 	window = { border = "rounded" },
-		-- },
+		styles = {
+			notification_history = {
+				width = 0.8,
+				height = 0.8
+			},
+		},
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 	}
