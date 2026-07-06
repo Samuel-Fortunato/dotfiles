@@ -11,7 +11,7 @@ return {
 	opts = {
 		interactions = {
 			chat = {
-				adapter = "gemini1",
+				adapter = "ollama",
 				slash_commands = {
 					["image"] = {
 						opts = {
@@ -21,14 +21,26 @@ return {
 				},
 			},
 			inline = {
-				adapter = "gemini1",
+				adapter = "ollama",
 			},
 			cmd = {
-				adapter = "gemini1",
+				adapter = "ollama",
 			},
 		},
 		adapters = {
 			http = {
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = "qwen3.5:9b",
+							},
+							num_ctx = {
+								default = 16384,
+							},
+						},
+					})
+				end,
 				gemini1 = function()
 					return require("codecompanion.adapters").extend("gemini", {
 						schema = {
