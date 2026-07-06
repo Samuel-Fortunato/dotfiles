@@ -23,10 +23,12 @@ window#waybar.hidden {
 #custom-archicon,
 #clock,
 #cpu,
-#temperature,
+#temperature.cpu,
+#temperature.gpu,
 #battery,
 #disk,
 #memory,
+#custom-gpu-usage,
 #idle_inhibitor,
 #wireplumber,
 #backlight,
@@ -48,11 +50,13 @@ window#waybar.hidden {
 #custom-archicon:hover,
 #clock:hover,
 #cpu:hover,
-#temperature:hover,
+#temperature.cpu:hover,
+#temperature.gpu:hover,
 #battery.power:hover,
 #battery.main:hover,
 #disk:hover,
 #memory:hover,
+#custom-gpu-usage:hover,
 #idle_inhibitor:hover,
 #wireplumber:hover,
 #backlight:hover,
@@ -99,36 +103,66 @@ window#waybar.hidden {
     border-right: none;
     margin-left: 8px;
     border-radius: 12px 0 0 12px;
+
+    padding-right: 2px;
 }
 
-#temperature {
+#temperature.cpu {
     background: @bg;
     color: @fg;
-    border-top: 1px solid @fg_dim;
-    border-bottom: 1px solid @fg_dim;
+	 border: 1px solid @fg_dim;
+	 border-left: none;
+	 border-radius: 0 12px 12px 0;
+	 margin-right: 2px;
+
+    padding-left: 2px;
 }
 
-#battery.power {
-    background: @bg;
-    color: @fg;
-    border-top: 1px solid @fg_dim;
-    border-bottom: 1px solid @fg_dim;
-}
+/* #battery.power { */
+/*     background: @bg; */
+/*     color: @fg; */
+/*     border-top: 1px solid @fg_dim; */
+/*     border-bottom: 1px solid @fg_dim; */
+/* } */
 
 #disk {
     background: @bg;
     color: @fg;
-    border-top: 1px solid @fg_dim;
-    border-bottom: 1px solid @fg_dim;
+    border: 1px solid @fg_dim;
+    border-right: none;
+    margin-left: 2px;
+    border-radius: 12px 0 0 12px;
 }
 
 #memory {
     background: @bg;
     color: @fg;
+	 border: 1px solid @fg_dim;
+	 border-left: none;
+	 border-radius: 0 12px 12px 0;
+	 margin-right: 2px;
+}
+
+#custom-gpu-usage {
+    background: @bg;
+    color: @fg;
     border: 1px solid @fg_dim;
-    border-left: none;
-    margin-right: 8px;
-    border-radius: 0 12px 12px 0;
+    border-right: none;
+    margin-left: 2px;
+    border-radius: 12px 0 0 12px;
+
+    padding-right: 2px;
+}
+
+#temperature.gpu {
+    background: @bg;
+    color: @fg;
+	 border: 1px solid @fg_dim;
+	 border-left: none;
+	 border-radius: 0 12px 12px 0;
+	 margin-right: 2px;
+
+    padding-left: 2px;
 }
 
 /* =====================================================
@@ -272,7 +306,8 @@ window#waybar.hidden {
 
 #cpu.warning,
 #memory.warning,
-#temperature.warning,
+#temperature.cpu.warning,
+#temperature.gpu.warning,
 #disk.warning,
 #battery.power.warning:not(.charging),
 #battery.main.warning:not(.charging) {
@@ -282,7 +317,8 @@ window#waybar.hidden {
 
 #cpu.critical,
 #memory.critical,
-#temperature.critical,
+#temperature.cpu.critical,
+#temperature.gpu.critical,
 #disk.critical,
 #battery.power.critical:not(.charging),
 #battery.main.critical:not(.charging) {
