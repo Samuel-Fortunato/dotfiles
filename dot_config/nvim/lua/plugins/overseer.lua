@@ -6,8 +6,8 @@ return {
 		"nvim-lualine/lualine.nvim",
 	},
 	keys = {
-		{ "<leader>bb", "<cmd>OverseerToggle<cr>", desc = "Overseer: Toggle List" },
-		{ "<leader>br", "<cmd>OverseerRun<cr>",    desc = "Overseer: Run Task" },
+		{ "<leader>cb", "<cmd>OverseerToggle<cr>", desc = "Overseer: Toggle List" },
+		{ "<leader>cr", "<cmd>OverseerRun<cr>",    desc = "Overseer: Run Task" },
 	},
 	opts = {
 		templates = { "builtin" },
