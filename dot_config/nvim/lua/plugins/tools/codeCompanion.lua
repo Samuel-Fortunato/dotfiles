@@ -1,10 +1,18 @@
 return {
 	"olimorris/codecompanion.nvim",
-	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"ravitemer/codecompanion-history.nvim"
+	},
+	cmd = {
+		"CodeCompanion",
+		"CodeCompanionChat",
+		"CodeCompanionActions",
+		"CodeCompanionCLI",
+		"CodeCompanionCmd",
+		"CodeCompanionHistory",
+		"CodeCompanionSummaries",
 	},
 	keys = {
 		{ "<leader><space>", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle AI Chat" }

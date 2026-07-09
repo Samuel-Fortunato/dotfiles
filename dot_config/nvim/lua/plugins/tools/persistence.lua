@@ -1,6 +1,7 @@
 return {
 	"folke/persistence.nvim",
-	event = "BufReadPre",
+	lazy = false,
+	-- event = "BufReadPre",
 	keys = {
 		{ "<leader>sd", function() require("persistence").load() end,                desc = "Load the session for the current directory" },
 		{ "<leader>sl", function() require("persistence").select() end,              desc = "Select a session to load" },

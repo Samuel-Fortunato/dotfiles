@@ -1,11 +1,10 @@
 return {
 	"saghen/blink.cmp",
-	version = "*",
+	branch = 'v1',
 	dependencies = {
 		"L3MON4DE/LuaSnip",
 		"windwp/nvim-autopairs",
-		'saghen/blink.compat',
-		"lervag/vimtex",
+		"saghen/blink.compat",
 	},
 	event = "InsertEnter",
 	opts = {

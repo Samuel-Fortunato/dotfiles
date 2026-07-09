@@ -1,6 +1,5 @@
 return {
 	"skywind3000/vim-keysound",
-	event = "VeryLazy",
 	keys = {
 		{ "<leader>k", "<cmd>KeysoundToggle<cr>", desc = "Find Files" },
 	},
