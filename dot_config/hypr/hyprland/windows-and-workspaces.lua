@@ -107,7 +107,7 @@ hl.window_rule({
 
 	match = { class = "^(org.kde.kcalc)$" },
 	float = true,
-	size = { 300, 400 },
+	-- size = { 300, 400 },
 })
 
 hl.window_rule({
