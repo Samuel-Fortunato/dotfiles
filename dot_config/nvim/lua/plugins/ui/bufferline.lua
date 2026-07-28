@@ -1,7 +1,7 @@
 return {
 	'akinsho/bufferline.nvim',
 	-- enabled = false,
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNew" },
 	keys = {
 		{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
 		{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
