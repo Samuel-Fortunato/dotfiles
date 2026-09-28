@@ -1,0 +1,25 @@
+---------------------
+---- MY PROGRAMS ----
+---------------------
+
+-- Set programs that you use
+local M            = {}
+
+M.terminal         = "kitty"
+M.fileManager      = "kitty --class yazi -e yazi"
+M.guiFileManager   = "thunar"
+M.menu             = "~/.config/rofi/scripts/launcher_t3"
+M.run              = "rofi -show run"
+M.power            = "~/.config/rofi/scripts/powermenu_t2"
+M.theme            = "~/.config/rofi/scripts/theme.sh"
+M.waybar           = "~/.config/waybar/reload.sh"
+M.browser          = "zen-browser"
+M.calculator       = "kcalc"
+M.print            = "hyprshot -m region -z -o ~/Pictures/Screenshots"
+M.notifClose       = "dunstctl close"
+M.notifPop         = "dunstctl history-pop"
+M.notifDnD         = "dunstctl set-paused toggle"
+M.clipboardHystory = "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+M.stayFree         = "~/Applications/stayfree-linux-x86_64_03c0d3e8357cfb52a9e9ffc962661a0c.AppImage --no-sandbox"
+
+return M
